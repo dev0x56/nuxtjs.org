@@ -5,16 +5,13 @@
 <script>
 import { defineComponent } from '@nuxtjs/composition-api'
 
-// Some code has been imported from Docus to make this working
-// @docus/app/dist/app/pages/_.vue
-
 export default defineComponent({
   async asyncData({ $docus, i18n, route, error }) {
     const { slug } = route.params
     if (!slug) {
       return error({
         statusCode: 404,
-        message: 'Partner not found'
+        message: 'Partner was not found'
       })
     }
 
@@ -42,6 +39,7 @@ export default defineComponent({
       templateOptions
     }
   },
+
   head() {
     const title = this.page.title
     const description = this.page.description
@@ -59,6 +57,7 @@ export default defineComponent({
       ]
     }
   },
+
   created() {
     if (process.client) {
       // Set template options
@@ -70,6 +69,7 @@ export default defineComponent({
       this.$docus.currentPath.value = `/${this.$route.params.pathMatch}`
     }
   },
+
   render(h) {
     return h(this.page.template, {
       props: {
